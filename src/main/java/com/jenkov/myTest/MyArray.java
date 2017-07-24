@@ -12,7 +12,7 @@ import java.util.StringJoiner;
  */
 public class MyArray{
     protected static final int MAX_ARRAY_SIZE = Integer.MAX_VALUE - 8;
-    protected static int DEFAULT_ARRAY_SIZE = 1001;
+    public static int DEFAULT_ARRAY_SIZE = 1001;
 
     protected int size = 0;
 
@@ -26,13 +26,11 @@ public class MyArray{
 
     public MyArray(){
 
-
-
-        if(SiddhiLearner2.isReCalculated){
-            DEFAULT_ARRAY_SIZE = SiddhiLearner2.getSiddhiLearner().getCalculatedSize()+1;
-            SiddhiLearner2.isReCalculated = false;
-
-        }
+//        if(SiddhiLearner2.isReCalculated){
+//            DEFAULT_ARRAY_SIZE = SiddhiLearner2.getSiddhiLearner().getCalculatedSize()+1;
+//            SiddhiLearner2.isReCalculated = false;
+//
+//        }
 
         values = new long[DEFAULT_ARRAY_SIZE];
     }
@@ -46,11 +44,11 @@ public class MyArray{
 
     protected void resetSize(int index) {
         if (index >= size) {
-            if(size == 0){
-                SiddhiLearner2.getSiddhiLearner().publish(new Object[]{index+1,1});
-            }else{
-                SiddhiLearner2.getSiddhiLearner().publish(new Object[]{index+1-size,0});
-            }
+//            if(size == 0){
+//                SiddhiLearner2.getSiddhiLearner().publish(new Object[]{index+1,1});
+//            }else{
+//                SiddhiLearner2.getSiddhiLearner().publish(new Object[]{index+1-size,0});
+//            }
 
             //SiddhiLearnerUniqueTimeWin.getSiddhiLearner().arraySizePublish(new Object[]{(index+1-size)});
             size = index + 1;

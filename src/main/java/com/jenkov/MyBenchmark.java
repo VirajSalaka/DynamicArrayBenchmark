@@ -34,12 +34,20 @@ package com.jenkov;
 import com.jenkov.myTest.MyArray;
 import com.jenkov.myTest.MyTest;
 import org.openjdk.jmh.annotations.Benchmark;
+import org.openjdk.jmh.annotations.Param;
+import org.openjdk.jmh.annotations.Scope;
+import org.openjdk.jmh.annotations.State;
 import org.openjdk.jmh.infra.Blackhole;
 
+@State(Scope.Benchmark)
 public class MyBenchmark {
+
+    @Param({"101", "1001", "10001"})
+    public int arg;
 
     @Benchmark
     public void testMethodArr10(Blackhole bh) {
+        MyArray.DEFAULT_ARRAY_SIZE = arg;
 
         for(int i=0; i<10000 ; i++){
             MyArray m = new MyArray();
@@ -53,7 +61,7 @@ public class MyBenchmark {
 
     @Benchmark
     public void testMethodArr100(Blackhole bh) {
-
+        MyArray.DEFAULT_ARRAY_SIZE = arg;
         for(int i=0; i<10000 ; i++){
             MyArray m = new MyArray();
             for(int j=0;j<100;j++){
@@ -67,6 +75,7 @@ public class MyBenchmark {
     @Benchmark
     public void testMethodArr1000(Blackhole bh) {
 
+        MyArray.DEFAULT_ARRAY_SIZE = arg;
         for(int i=0; i<10000 ; i++){
             MyArray m = new MyArray();
             for(int j=0;j<1000;j++){
@@ -77,17 +86,18 @@ public class MyBenchmark {
 
     }
 
-//    @Benchmark
-//    public void testMethodArr10000(Blackhole bh) {
-//
-//        for(int i=0; i<10000 ; i++){
-//            MyArray m = new MyArray();
-//            for(int j=0;j<10000;j++){
-//                m.add(j, 1);
-//            }
-//            bh.consume(m);
-//        }
-//
-//    }
+    @Benchmark
+    public void testMethodArr10000(Blackhole bh) {
+
+        MyArray.DEFAULT_ARRAY_SIZE = arg;
+        for(int i=0; i<10000 ; i++){
+            MyArray m = new MyArray();
+            for(int j=0;j<10000;j++){
+                m.add(j, 1);
+            }
+            bh.consume(m);
+        }
+
+    }
 
 }
