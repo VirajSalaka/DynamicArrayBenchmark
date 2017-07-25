@@ -31,8 +31,7 @@
 
 package com.jenkov;
 
-import com.jenkov.myTest.MyArray;
-import com.jenkov.myTest.MyTest;
+import com.jenkov.myTest.DynamicArray;
 import org.openjdk.jmh.annotations.Benchmark;
 import org.openjdk.jmh.annotations.Param;
 import org.openjdk.jmh.annotations.Scope;
@@ -40,17 +39,17 @@ import org.openjdk.jmh.annotations.State;
 import org.openjdk.jmh.infra.Blackhole;
 
 @State(Scope.Benchmark)
-public class MyBenchmark {
+public class MicroBenchmark {
 
     @Param({"101", "1001", "10001"})
     public int arg;
 
     @Benchmark
     public void testMethodArr10(Blackhole bh) {
-        MyArray.DEFAULT_ARRAY_SIZE = arg;
+        DynamicArray.DEFAULT_ARRAY_SIZE = arg;
 
         for(int i=0; i<10000 ; i++){
-            MyArray m = new MyArray();
+            DynamicArray m = new DynamicArray();
             for(int j=0;j<10;j++){
                 m.add(j, 1);
             }
@@ -61,9 +60,9 @@ public class MyBenchmark {
 
     @Benchmark
     public void testMethodArr100(Blackhole bh) {
-        MyArray.DEFAULT_ARRAY_SIZE = arg;
+        DynamicArray.DEFAULT_ARRAY_SIZE = arg;
         for(int i=0; i<10000 ; i++){
-            MyArray m = new MyArray();
+            DynamicArray m = new DynamicArray();
             for(int j=0;j<100;j++){
                 m.add(j, 1);
             }
@@ -75,9 +74,9 @@ public class MyBenchmark {
     @Benchmark
     public void testMethodArr1000(Blackhole bh) {
 
-        MyArray.DEFAULT_ARRAY_SIZE = arg;
+        DynamicArray.DEFAULT_ARRAY_SIZE = arg;
         for(int i=0; i<10000 ; i++){
-            MyArray m = new MyArray();
+            DynamicArray m = new DynamicArray();
             for(int j=0;j<1000;j++){
                 m.add(j, 1);
             }
@@ -89,9 +88,9 @@ public class MyBenchmark {
     @Benchmark
     public void testMethodArr10000(Blackhole bh) {
 
-        MyArray.DEFAULT_ARRAY_SIZE = arg;
+        DynamicArray.DEFAULT_ARRAY_SIZE = arg;
         for(int i=0; i<10000 ; i++){
-            MyArray m = new MyArray();
+            DynamicArray m = new DynamicArray();
             for(int j=0;j<10000;j++){
                 m.add(j, 1);
             }

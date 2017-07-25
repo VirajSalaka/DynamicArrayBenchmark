@@ -10,7 +10,7 @@ import java.util.StringJoiner;
 /**
  * Created by viraj on 7/19/17.
  */
-public class MyArray{
+public class DynamicArray {
     protected static final int MAX_ARRAY_SIZE = Integer.MAX_VALUE - 8;
     public static int DEFAULT_ARRAY_SIZE = 1001;
 
@@ -18,20 +18,18 @@ public class MyArray{
 
     private long[] values;
 
-    private static final Logger logger = LoggerFactory.getLogger(MyArray.class);
-
-
+    private static final Logger logger = LoggerFactory.getLogger(DynamicArray.class);
 
     // Private methods
 
-    public MyArray(){
+    public DynamicArray(){
 
+        //to assign the value from siddhi
 //        if(SiddhiLearner2.isReCalculated){
-//            DEFAULT_ARRAY_SIZE = SiddhiLearner2.getSiddhiLearner().getCalculatedSize()+1;
+//            DEFAULT_ARRAY_SIZE = SiddhiLearner2.getSiddhiLearner().getCalculatedSize()+3;
 //            SiddhiLearner2.isReCalculated = false;
-//
+//            System.out.println(DEFAULT_ARRAY_SIZE+ " is the array size");
 //        }
-
         values = new long[DEFAULT_ARRAY_SIZE];
     }
 
@@ -44,14 +42,13 @@ public class MyArray{
 
     protected void resetSize(int index) {
         if (index >= size) {
+            //to publish events to siddhi : because of being array size fixed, taking average to assign the exact array size
 //            if(size == 0){
 //                SiddhiLearner2.getSiddhiLearner().publish(new Object[]{index+1,1});
 //            }else{
 //                SiddhiLearner2.getSiddhiLearner().publish(new Object[]{index+1-size,0});
 //            }
-
-            //SiddhiLearnerUniqueTimeWin.getSiddhiLearner().arraySizePublish(new Object[]{(index+1-size)});
-            size = index + 1;
+            size = index+1;
         }
     }
 
@@ -64,14 +61,6 @@ public class MyArray{
             System.out.println(" no minus value ");
         }
     }
-//
-//    protected void rangeCheckForGet(long index, int size) {
-//        rangeCheck(index, size);
-//        if (index < 0 || index >= size) {
-//            throw BLangExceptionHelper.getRuntimeException(
-//                    RuntimeErrors.ARRAY_INDEX_OUT_OF_RANGE, index, size);
-//        }
-//    }
 
     protected void ensureCapacity(int requestedCapacity, int currentArraySize) {
         if ((requestedCapacity) - currentArraySize >= 0) {
@@ -80,10 +69,6 @@ public class MyArray{
 
             // Now get the maximum value of the calculate new array size and request capacity
             newArraySize = Math.max(newArraySize, requestedCapacity);
-
-            //SiddhiLearner.getSiddhiLearner().publish(new Object[]{requestedCapacity-size});
-
-            //SiddhiLearnerUniqueTimeWin.getSiddhiLearner().arraySizePublish(new Object[]{(requestedCapacity-size)});
 
             // Now get the minimum value of new array size and maximum array size
             newArraySize = Math.min(newArraySize, MAX_ARRAY_SIZE);

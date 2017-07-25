@@ -46,9 +46,6 @@ public class SiddhiLearner2 {
         executionPlanRuntime = this.siddhiManager.
                 createExecutionPlanRuntime(inStreamDefinition + query);
 
-
-        //executionPlanRuntime = siddhiManager.createExecutionPlanRuntime(inStreamDefinition + query);
-
         inputHandler = executionPlanRuntime.getInputHandler("inputStream");
         initCallback();
         executionPlanRuntime.start();
